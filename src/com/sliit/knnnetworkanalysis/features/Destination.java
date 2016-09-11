@@ -2,22 +2,19 @@ package com.sliit.knnnetworkanalysis.features;
 
 public class Destination extends Feature{
     
-    private final Destinations DESTINATION;
+    private final double DESTINATION;
     
-    public Destination(Destinations destination) {
-        super(destination.name());
-        this.DESTINATION = destination;
-    }
-
-    public enum Destinations {
-        destination1,
-        destination2,
-        destination3,
-        destination4
+    public Destination(String destination) {
+        super(destination);
+        if("0.0.0.0".equals(destination) || "224.0.0.22".equals(destination)){
+            this.DESTINATION = 0;
+        }else{
+            this.DESTINATION = Double.parseDouble(destination);
+        }
     }
 
     @Override
     void calculateDistances() {
-        setDistance(DESTINATION.ordinal());
+        setDistance(DESTINATION);
     }
 }

@@ -2,23 +2,20 @@ package com.sliit.knnnetworkanalysis.features;
 
 public class Source extends Feature{
 
-    private final Sources SOURCE;
+    private final double SOURCE;
     
-    public Source(Sources source) {
-        super(source.name());
-        this.SOURCE = source;
-    }
-
-    public enum Sources {
-        source1,
-        source2,
-        source3,
-        source4
+    public Source(String source) {
+        super(source);
+        if("0.0.0.0".equals(source) || "192.168.1.6".equals(source)){
+            this.SOURCE = 0;
+        }else{
+            this.SOURCE = Double.parseDouble(source);
+        }
     }
 
     @Override
     void calculateDistances() {
-        setDistance(SOURCE.ordinal());
+        setDistance(SOURCE);
     }
     
 }

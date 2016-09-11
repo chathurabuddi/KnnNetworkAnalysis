@@ -1,10 +1,13 @@
 package com.sliit.knnnetworkanalysis;
 
+import com.sliit.knnnetworkanalysis.features.Caplen;
 import com.sliit.knnnetworkanalysis.features.Destination;
 import com.sliit.knnnetworkanalysis.features.Feature;
+import com.sliit.knnnetworkanalysis.features.Hlen;
 import com.sliit.knnnetworkanalysis.features.Length;
 import com.sliit.knnnetworkanalysis.features.Protocol;
 import com.sliit.knnnetworkanalysis.features.Source;
+import com.sliit.knnnetworkanalysis.features.Version;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,16 +26,19 @@ public class KnnNetworkAnalysis {
         List<Neighbor> nearestNeighbors = getKNearestNeighbors(K,instances,classificationInstance);
         Instance classifiedInstance = determineFraudStatus(classificationInstance, nearestNeighbors);
         
-        System.out.println("Frud Status of Classification Instance : " + classifiedInstance.getFeatures());
+        System.out.println("Frud Status of Classification Instance : " + classifiedInstance.getFraudStatus());
     }
     
     private static Instance getClassificationInstance() {
         List<Feature>  attributes = new ArrayList<>();
         Instance instance = new Instance();
-        attributes.add(new Source(Source.Sources.source2));
-        attributes.add(new Destination(Destination.Destinations.destination3));
-        attributes.add(new Protocol(Protocol.Protocols.IPv4));
-        attributes.add(new Length(22.5));
+        attributes.add(new Source("443"));
+        attributes.add(new Destination("63846"));
+        attributes.add(new Protocol(Protocol.Protocols.Tcp));
+        attributes.add(new Length(54));
+        attributes.add(new Caplen(54));
+        attributes.add(new Hlen(5));
+        attributes.add(new Version(0));
         instance.setFeatures(attributes);
 	return instance;
     }

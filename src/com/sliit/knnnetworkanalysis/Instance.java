@@ -18,6 +18,10 @@ public class Instance{
     public void setFraudStatus(boolean fraudStatus) {
         this.fraudStatus = fraudStatus;
     }
+    
+    public boolean getFraudStatus() {
+        return fraudStatus;
+    }
 
     public boolean isFraud() {
         return fraudStatus;

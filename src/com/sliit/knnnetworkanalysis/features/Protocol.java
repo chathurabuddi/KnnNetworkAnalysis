@@ -10,8 +10,10 @@ public class Protocol extends Feature{
     }
     
     public enum Protocols {
-        IPv4,
-        IPv6
+        Udp,
+        Arp,
+        IP,
+        Tcp
     }
 
     @Override
